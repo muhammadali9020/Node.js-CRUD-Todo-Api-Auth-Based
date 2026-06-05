@@ -62,5 +62,5 @@ app.use((req, res, next) => {
   });
 });
 app.listen(process.env.PORT, () =>
-  console.log("server is Started ", process.env.PORT),
+  console.log("server is Started ", process.env.PORT||3000),
 );
