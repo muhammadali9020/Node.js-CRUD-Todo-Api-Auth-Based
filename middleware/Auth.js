@@ -3,7 +3,7 @@ import { userSchema } from "../models/UserSchema.js";
 import jwt from "jsonwebtoken";
 const Auth = async (req, res, next) => {
   try {
-    const token = req.cookies.token;
+    const token = req.headers.token;
     if (!token)
       return res.status(401).json({ success: false, msg: "token expired !" });
     const tokenDecode = jwt.verify(token, process.env.SCERET_KEY);
@@ -22,9 +22,7 @@ const Auth = async (req, res, next) => {
     next();
   } catch (error) {
     // console.log(error)
-    res
-      .status(500)
-      .json({ success: false, msg: "internal server error !" });
+    res.status(500).json({ success: false, msg: "internal server error !" });
   }
 };
 
